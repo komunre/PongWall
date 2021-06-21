@@ -9,7 +9,7 @@ namespace Content.PongWall.GameObjects
     public class PaddleComponent : Component {
         public override string Name => "Paddle"; 
 
-        public float Speed = 0.2f;
+        public float Speed = 10f;
         public PaddleSystem.Button Pressed;
     }
 
@@ -17,6 +17,7 @@ namespace Content.PongWall.GameObjects
         public enum Button {
             Right,
             Left,
+            None,
         }
         public override void Initialize() {
             base.Initialize();
@@ -32,9 +33,9 @@ namespace Content.PongWall.GameObjects
                 return;
 
             if (state)
-                paddle.Pressed |= button;
+                paddle.Pressed = button;
             else
-                paddle.Pressed &= button;
+                paddle.Pressed = Button.None;
             
             paddle.Dirty();
         }

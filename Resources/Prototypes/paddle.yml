@@ -16,4 +16,4 @@
           mask:
             - Solid
     - type: Paddle
-    #- type: Input
+    - type: Input

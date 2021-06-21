@@ -39,6 +39,7 @@ namespace Content.PongWall
             // DEVNOTE: Registers all of your components.
             IoCManager.Register<PongWallSystem, PongWallSystem>();
             IoCManager.Register<PaddleSystem, PaddleSystem>();
+            //IoCManager.Register<MovableController, MovableController>();
             factory.DoAutoRegistrations();
 
             TemplateIoC.Register();
@@ -59,7 +60,7 @@ namespace Content.PongWall
             // If you want to have a main menu to start the game from instead, use the StateManager.
             IoCManager.Resolve<IBaseClient>().StartSinglePlayer();
             IoCManager.Resolve<PongWallSystem>().StartGame();
-            IoCManager.Resolve<PaddleSystem>().Initialize();
+            //IoCManager.Resolve<PaddleSystem>().Initialize();
 
             var overlayManager = IoCManager.Resolve<IOverlayManager>();
 

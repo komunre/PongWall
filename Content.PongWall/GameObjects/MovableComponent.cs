@@ -4,6 +4,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
+using Robust.Shared.Log;
 
 namespace Content.PongWall.GameObjects
 {
@@ -22,10 +23,10 @@ namespace Content.PongWall.GameObjects
                 var speed = paddle.Speed;
 
                 var direction = Vector2.Zero;
-                if ((paddle.Pressed & PaddleSystem.Button.Right) != 0)
+                if (paddle.Pressed == PaddleSystem.Button.Right)
                     direction += Vector2.UnitX;
 
-                if ((paddle.Pressed & PaddleSystem.Button.Left) != 0)
+                if (paddle.Pressed == PaddleSystem.Button.Left)
                     direction -= Vector2.UnitX;
 
                 physics.LinearVelocity = direction * speed;
