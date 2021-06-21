@@ -5,10 +5,12 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Localization;
 using Robust.Shared.Timing;
+using Robust.Client.Graphics;
+using Robust.PongWall.Interface;
 
 // DEVNOTE: You can change the namespace and project name to whatever you want!
 // Just make sure to consistently use a prefix across your different projects.
-namespace Template.Game
+namespace Robust.PongWall
 {
     public class EntryPoint : GameClient
     {
@@ -39,6 +41,8 @@ namespace Template.Game
 
             IoCManager.BuildGraph();
 
+            IoCManager.Register<PongWallSystem, PongWallSystem>();
+
             // DEVNOTE: This is generally where you'll be setting up the IoCManager further, like the tile manager.
         }
 
@@ -52,6 +56,11 @@ namespace Template.Game
             // which means you can start creating entities, spawning things...
             // If you want to have a main menu to start the game from instead, use the StateManager.
             IoCManager.Resolve<IBaseClient>().StartSinglePlayer();
+            IoCManager.Resolve<PongWallSystem>().StartGame();
+
+            var overlayManager = IoCManager.Resolve<IOverlayManager>();
+
+            overlayManager.AddOverlay(new CollisionOverlay());
         }
 
         protected override void Dispose(bool disposing)
