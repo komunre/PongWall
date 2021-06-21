@@ -5,6 +5,7 @@ using Robust.Shared.Physics.Controllers;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 using Robust.Shared.Log;
+using Robust.Client.Player;
 
 namespace Content.PongWall.GameObjects
 {
@@ -16,10 +17,17 @@ namespace Content.PongWall.GameObjects
     }
     
     public class MovableController : VirtualController {
+        [Dependency] private readonly IPlayerManager _playerManager;
         public override void UpdateBeforeSolve(bool prediction, float frameTime) {
             base.UpdateBeforeSolve(prediction, frameTime);
 
-            foreach (var (paddle, physics) in ComponentManager.EntityQuery<PaddleComponent, PhysicsComponent>()) {
+            //foreach (var (paddle, physics) in ComponentManager.EntityQuery<PaddleComponent, PhysicsComponent>()) {
+                if (!_playerManager.LocalPlayer.ControlledEntity.TryGetComponent<PaddleComponent>(out var paddle))
+                    return;
+                
+                if (!_playerManager.LocalPlayer.ControlledEntity.TryGetComponent<PhysicsComponent>(out var physics))
+                    return;
+
                 var speed = paddle.Speed;
 
                 var direction = Vector2.Zero;
@@ -30,7 +38,7 @@ namespace Content.PongWall.GameObjects
                     direction -= Vector2.UnitX;
 
                 physics.LinearVelocity = direction * speed;
-            }
+            //}
         }
     }
 }

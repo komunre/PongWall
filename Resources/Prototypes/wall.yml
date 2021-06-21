@@ -10,7 +10,7 @@
           restitution: 0
           shape:
             !type:PhysShapeAabb
-            bounds: "-1.0,-1.0,1.0,1.0"
+            bounds: "-0.5,-1.0,0.5,1.0"
           layer:
             - Solid
           mask:

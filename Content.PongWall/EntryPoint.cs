@@ -38,7 +38,7 @@ namespace Content.PongWall
 
             // DEVNOTE: Registers all of your components.
             IoCManager.Register<PongWallSystem, PongWallSystem>();
-            IoCManager.Register<PaddleSystem, PaddleSystem>();
+            //IoCManager.Register<PaddleSystem, PaddleSystem>();
             //IoCManager.Register<MovableController, MovableController>();
             factory.DoAutoRegistrations();
 
@@ -77,7 +77,7 @@ namespace Content.PongWall
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
         {
             base.Update(level, frameEventArgs);
-            
+
             // DEVNOTE: Game update loop goes here. Usually you'll want some independent GameTicker.
         }
     }

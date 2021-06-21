@@ -41,16 +41,16 @@ namespace Content.PongWall
 
             for (int y = 0; y < 5; y++) {
                 for (int x = 0; x < 90; x++) {
-                    _wallBlocks.Add(_entityManager.SpawnEntity("Wall", new MapCoordinates(x * 0.2f, y * 0.1f, _map)));
+                    _wallBlocks.Add(_entityManager.SpawnEntity("Wall", new MapCoordinates(x * 2.2f, y * 1.2f, _map)));
                 }
             }
 
-            _paddle = _entityManager.SpawnEntity("Paddle", new MapCoordinates(new Vector2(0.45f, -1.8f), _map));
+            _paddle = _entityManager.SpawnEntity("Paddle", new MapCoordinates(new Vector2(45f, -1.8f), _map));
 
             var player = _playerManager.LocalPlayer;
             player.AttachEntity(_paddle);
 
-            var camera = _entityManager.SpawnEntity(null, new MapCoordinates(new Vector2(0.45f, 0.0f), _map));
+            var camera = _entityManager.SpawnEntity(null, new MapCoordinates(new Vector2(45f, 0.0f), _map));
             var eye = camera.AddComponent<EyeComponent>();
             eye.Current = true;
             eye.Zoom = Vector2.One;

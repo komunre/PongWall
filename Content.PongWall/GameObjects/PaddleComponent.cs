@@ -2,7 +2,8 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Players;
-
+using Robust.Shared.Log;
+using System;
 namespace Content.PongWall.GameObjects
 {
     [RegisterComponent]
@@ -10,7 +11,7 @@ namespace Content.PongWall.GameObjects
         public override string Name => "Paddle"; 
 
         public float Speed = 10f;
-        public PaddleSystem.Button Pressed;
+        public PaddleSystem.Button Pressed = PaddleSystem.Button.None;
     }
 
     public class PaddleSystem : EntitySystem {
@@ -29,15 +30,16 @@ namespace Content.PongWall.GameObjects
         }
 
         public static void SetMovementInput(ICommonSession session, Button button, bool state) {
-            if (session == null || session.AttachedEntity.TryGetComponent<PaddleComponent>(out var paddle))
+            if (session.AttachedEntity == null || session.AttachedEntity.Deleted || !session.AttachedEntity.TryGetComponent<PaddleComponent>(out var paddle))
                 return;
 
-            if (state)
+            if (state) {
                 paddle.Pressed = button;
+                Logger.Debug(String.Format("{0} is now pressed", button));
+            }
             else
                 paddle.Pressed = Button.None;
             
-            paddle.Dirty();
         }
 
         private sealed class ButtonInputCmdHandler : InputCmdHandler
