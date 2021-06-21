@@ -6,9 +6,9 @@
     <LangVersion>9</LangVersion>
     <IsPackable>false</IsPackable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>..\bin\Robust.PongWall\</OutputPath> <!-- This is important for gamepack mounting purposes. -->
+    <OutputPath>..\bin\Content.PongWall\</OutputPath> <!-- This is important for gamepack mounting purposes. -->
     <OutputType Condition="'$(FullRelease)' != 'True'">Exe</OutputType>
-    <RootNamespace>Robust.PongWall</RootNamespace>
+    <RootNamespace>Content.PongWall</RootNamespace>
   </PropertyGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.DefineConstants.targets" />
   <ItemGroup>

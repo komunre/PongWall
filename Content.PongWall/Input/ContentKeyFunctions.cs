@@ -1,6 +1,6 @@
 using Robust.Shared.Input;
 
-namespace Robust.PongWall.Input
+namespace Content.PongWall.Input
 {
     [KeyFunctions]
     public static class ContentKeyFunctions

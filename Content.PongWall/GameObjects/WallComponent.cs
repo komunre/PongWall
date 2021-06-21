@@ -1,6 +1,6 @@
 using Robust.Shared.GameObjects;
 
-namespace Robust.PongWall.GameObjects
+namespace Content.PongWall.GameObjects
 {
     [RegisterComponent]
     public class WallComponent : Component

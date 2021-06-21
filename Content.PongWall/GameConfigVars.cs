@@ -1,7 +1,7 @@
 using Robust.Shared;
 using Robust.Shared.Configuration;
 
-namespace Robust.PongWall
+namespace Content.PongWall
 {
     // DEVNOTE: This is the same as SS14's CCVars. Except it's not named CCVars as that name is 
     // hot garbage.

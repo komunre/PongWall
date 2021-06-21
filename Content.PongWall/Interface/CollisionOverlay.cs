@@ -4,16 +4,20 @@ using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Enums;
 
-namespace Robust.PongWall.Interface
+namespace Content.PongWall.Interface
 {
     public class CollisionOverlay : Overlay
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IComponentManager _componentManager = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager;
+        [Dependency] private readonly IComponentManager _componentManager;
         private ShaderInstance _shader;
 
+        public override OverlaySpace Space => OverlaySpace.WorldSpace;
+
         public CollisionOverlay() {
+            IoCManager.InjectDependencies(this);
             _shader = _prototypeManager.Index<ShaderPrototype>("unshaded").Instance();
         }
         protected override void Draw(in OverlayDrawArgs args) {

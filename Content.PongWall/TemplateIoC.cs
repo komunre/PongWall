@@ -1,4 +1,4 @@
-namespace Robust.PongWall
+namespace Content.PongWall
 {
     internal static class TemplateIoC
     {

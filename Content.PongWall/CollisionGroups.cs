@@ -2,7 +2,7 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Serialization;
 using System;
 
-namespace Robust.PongWall
+namespace Content.PongWall
 {
     [Flags]
     [FlagsFor(typeof(CollisionLayer)), FlagsFor(typeof(CollisionMask))]

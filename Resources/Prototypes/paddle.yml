@@ -1,5 +1,5 @@
 - type: entity
-  id: Wall
+  id: Paddle
   components:
     - type: Physics
       status: InAir

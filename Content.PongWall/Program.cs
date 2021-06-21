@@ -1,6 +1,6 @@
 using Robust.Client;
 
-namespace Robust.PongWall
+namespace Content.PongWall
 {
     internal static class Program
     {
@@ -14,19 +14,19 @@ namespace Robust.PongWall
                 Sandboxing = false,
                 
                 // Projects with this prefix will be loaded by the engine.
-                ContentModulePrefix = "Template.",
+                ContentModulePrefix = "Content.",
                 
-                // Name of the folder where the game will be built in. Also check Robust.PongWall.csproj:9!
-                ContentBuildDirectory = "Robust.PongWall",
+                // Name of the folder where the game will be built in. Also check Content.PongWall.csproj:9!
+                ContentBuildDirectory = "Content.PongWall",
                 
                 // Default window name. This can also be changed on runtime with the IClyde service.
-                DefaultWindowTitle = "RobustToolbox Template Game",
+                DefaultWindowTitle = "Pong Wall",
                 
                 // This template is singleplayer-only, so we disable connecting to a server from program arguments.
                 DisableCommandLineConnect = true,
                 
                 // Name of the folder where the user's data (config, etc) will be stored.
-                UserDataDirectoryName = "Template Game",
+                UserDataDirectoryName = "PongWall",
                 
                 // Name of the configuration file in the user's data directory.
                 ConfigFileName = "config.toml",

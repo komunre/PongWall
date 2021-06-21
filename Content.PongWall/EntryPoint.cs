@@ -6,11 +6,13 @@ using Robust.Shared.IoC;
 using Robust.Shared.Localization;
 using Robust.Shared.Timing;
 using Robust.Client.Graphics;
-using Robust.PongWall.Interface;
+using Content.PongWall.Interface;
+using Robust.Shared.Physics.Controllers;
+using Content.PongWall.GameObjects;
 
 // DEVNOTE: You can change the namespace and project name to whatever you want!
 // Just make sure to consistently use a prefix across your different projects.
-namespace Robust.PongWall
+namespace Content.PongWall
 {
     public class EntryPoint : GameClient
     {
@@ -35,13 +37,13 @@ namespace Robust.PongWall
             var factory = IoCManager.Resolve<IComponentFactory>();
 
             // DEVNOTE: Registers all of your components.
+            IoCManager.Register<PongWallSystem, PongWallSystem>();
+            IoCManager.Register<PaddleSystem, PaddleSystem>();
             factory.DoAutoRegistrations();
 
             TemplateIoC.Register();
 
             IoCManager.BuildGraph();
-
-            IoCManager.Register<PongWallSystem, PongWallSystem>();
 
             // DEVNOTE: This is generally where you'll be setting up the IoCManager further, like the tile manager.
         }
@@ -57,6 +59,7 @@ namespace Robust.PongWall
             // If you want to have a main menu to start the game from instead, use the StateManager.
             IoCManager.Resolve<IBaseClient>().StartSinglePlayer();
             IoCManager.Resolve<PongWallSystem>().StartGame();
+            IoCManager.Resolve<PaddleSystem>().Initialize();
 
             var overlayManager = IoCManager.Resolve<IOverlayManager>();
 
