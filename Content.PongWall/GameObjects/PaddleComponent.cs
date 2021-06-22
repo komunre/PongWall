@@ -27,11 +27,23 @@ namespace Content.PongWall.GameObjects
                 .Bind(EngineKeyFunctions.MoveRight, new ButtonInputCmdHandler(Button.Right, SetMovementInput))
                 .Bind(EngineKeyFunctions.MoveLeft, new ButtonInputCmdHandler(Button.Left, SetMovementInput))
                 .Register<PaddleSystem>();
+            
+            Logger.Debug("Keys for paddles binded");
+        }
+
+        public override void Shutdown() {
+            base.Shutdown();
+            //Logger.Info("Shutting down paddle system");
+            CommandBinds.Unregister<PaddleSystem>();
         }
 
         public static void SetMovementInput(ICommonSession session, Button button, bool state) {
-            if (session.AttachedEntity == null || session.AttachedEntity.Deleted || !session.AttachedEntity.TryGetComponent<PaddleComponent>(out var paddle))
+            Logger.Debug("Handling movement");
+            
+            if (session.AttachedEntity == null || session.AttachedEntity.Deleted || !session.AttachedEntity.TryGetComponent<PaddleComponent>(out var paddle)) {
+                Logger.Debug("Returning back from paddle movement");
                 return;
+            }
 
             if (state) {
                 paddle.Pressed = button;

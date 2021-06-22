@@ -10,8 +10,8 @@ namespace Content.PongWall.Interface
 {
     public class CollisionOverlay : Overlay
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager;
-        [Dependency] private readonly IComponentManager _componentManager;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IComponentManager _componentManager = default!;
         private ShaderInstance _shader;
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;

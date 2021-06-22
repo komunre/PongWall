@@ -9,6 +9,7 @@ using Robust.Client.Graphics;
 using Content.PongWall.Interface;
 using Robust.Shared.Physics.Controllers;
 using Content.PongWall.GameObjects;
+using Content.PongWall.Input;
 
 // DEVNOTE: You can change the namespace and project name to whatever you want!
 // Just make sure to consistently use a prefix across your different projects.
@@ -38,6 +39,7 @@ namespace Content.PongWall
 
             // DEVNOTE: Registers all of your components.
             IoCManager.Register<PongWallSystem, PongWallSystem>();
+            //IoCManager.Register<SharedInputSystem, SharedInputSystem>();
             //IoCManager.Register<PaddleSystem, PaddleSystem>();
             //IoCManager.Register<MovableController, MovableController>();
             factory.DoAutoRegistrations();
@@ -47,6 +49,9 @@ namespace Content.PongWall
             IoCManager.BuildGraph();
 
             // DEVNOTE: This is generally where you'll be setting up the IoCManager further, like the tile manager.
+            IoCManager.Resolve<PongWallSystem>().Initialize();
+            //IoCManager.Resolve<PaddleMovementSystem>().Initialize();
+            //IoCManager.Resolve<PaddleSystem>().Initialize();
         }
 
         public override void PostInit()
@@ -60,7 +65,6 @@ namespace Content.PongWall
             // If you want to have a main menu to start the game from instead, use the StateManager.
             IoCManager.Resolve<IBaseClient>().StartSinglePlayer();
             IoCManager.Resolve<PongWallSystem>().StartGame();
-            //IoCManager.Resolve<PaddleSystem>().Initialize();
 
             var overlayManager = IoCManager.Resolve<IOverlayManager>();
 
